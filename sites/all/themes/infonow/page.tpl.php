@@ -1,22 +1,17 @@
 <!-- Main Content -->
-<?php
 
-print render($page['menu']); 
-?>
 
 <div id="main_body">
     <div id="body_centre">
         <div id="area_content">
             <div id="map">
                 <img src="/<?php echo drupal_get_path('theme', 'infonow');?>/img/home_screen.jpg" alt="" />
-                <?php if ($main_menu): ?>
-                    <div id="main-menu" class="navigation">
-                    <?php 
-                        get_main_menu($main_menu);
-                    ?>
-                    </div>
+                <?php if($page['test-region']): ?>
+                <div id='main-menu' class='navigation'>
+                    <?php print render($page['test-region']); ?>
+                </div>
                 <?php endif; ?>
-            </div>
+           </div>
             <div id="documents_holder">
                 <div class="search_holder">
                     <div class="title_holder">

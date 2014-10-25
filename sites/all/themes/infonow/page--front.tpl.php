@@ -1,6 +1,5 @@
 <!-- Main Content -->
 <?php
-
 print render($page['menu']); 
 ?>
 
@@ -9,12 +8,10 @@ print render($page['menu']);
         <div id="area_content">
             <div id="map">
                 <img src="/<?php echo drupal_get_path('theme', 'infonow');?>/img/home_screen.jpg" alt="" />
-                <?php if ($main_menu): ?>
-                    <div id="main-menu" class="navigation">
-                    <?php 
-                        get_main_menu($main_menu);
-                    ?>
-                    </div>
+                <?php if($page['menu']): ?>
+                <div id='main-menu' class='navigation'>
+                    <?php print render($page['menu']); ?>
+                </div>
                 <?php endif; ?>
             </div>
             <div id="documents_holder">

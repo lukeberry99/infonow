@@ -11,4 +11,4 @@ stylesheets[print][] = print.css
 regions[content] = Content
 regions[cmis] = CMIS
 regions[menu] = Menu
-regions[test_region] Test Region
+regions[test-region] Test Region
