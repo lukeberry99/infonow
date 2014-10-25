@@ -1,0 +1,4 @@
+name = Expand as default
+description = Expand menus by default
+core = 7.x
+version = 1.0
