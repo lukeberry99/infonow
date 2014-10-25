@@ -8,9 +8,10 @@ print render($page['menu']);
         <div id="area_content">
             <div id="map">
                 <img src="/<?php echo drupal_get_path('theme', 'infonow');?>/img/home_screen.jpg" alt="" />
-                <?php if($page['menu']): ?>
+asdsd
+                <?php if($page['testmenu']): ?>
                 <div id='main-menu' class='navigation'>
-                    <?php print render($page['menu']); ?>
+                    <?php echo render($page['testmenu']); ?>
                 </div>
                 <?php endif; ?>
             </div>
