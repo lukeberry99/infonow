@@ -1,0 +1,35 @@
+/* CREO FORM STYLES - These are used by the form & form elements */
+form { display:inline; }
+input, textarea, select { font-family:Arial, Verdana, Helvetica, sans-serif; font-size:1em; }
+input.disabled { border:1px solid #CCCCCC; background:#F6F6F6; }
+fieldset { border:1px solid #CCCCCC; margin:0 0 5px 0; padding:5px; }
+select { margin-bottom:5px; }
+legend { font-weight:bold; color:#666666; }
+
+#form_intro_text { margin-bottom:10px; }
+.form_plain_text { margin-bottom:5px; }
+.form_question { padding:5px 0; }
+.form_question_label { float:left; width:20%; padding:0; margin:0; display:block; }
+.form_question_label_vertical { float:none; display:block; width:99%; }
+.form_question_input, .form_question_input_error { float:right; margin:0; width:78%; display:block; }
+.indentField { margin-left:22%; }
+.form_question_input_error_text { color:#CC0000; }
+.form_question_error_text { color:#CC0000; padding-left:21%; }
+.form_question_required { color:#FF0000; padding:0; margin:0; line-height:0em; }
+.form_terms_label { width:auto; }
+.form_submit_container {}
+/*.button { padding:1px 4px; background:#5B91C5; font-weight:bold; color:#FFFFFF; border:1px solid #235B9C; font-size:100%; margin:0 0 5px 0; float:right; cursor:pointer; overflow:visible; }*/
+.toolTipLink { text-decoration:none !important; font-size:0.9em; }
+
+.input_datepicker { float:left; width:100px; }
+
+.form_box { width:75%; display:block; }
+
+.form_key { color:#CC0000; }
+
+.formRadioBox/*, .formCheckboxBox*/ { float:right; width:78%; }
+.form_radio_label {}
+.form_radio {}
+.label_checkbox { float:right; width:92%; }
+
+.formMsgFail { display:none; }

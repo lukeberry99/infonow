@@ -1,0 +1,51 @@
+#skipLinks { display:none; }
+
+/*********************** Main Menu ***********************/
+#menuMain_holder { float:right; height:80px;}
+#menuMain_holder #menuMain { margin:0; padding:0; float:left; height:80px; }
+#menuMain_holder .logout { float:left; background:url(img/menu_border.gif) repeat-y left; height:80px;}
+#menuMain_holder .logout div { background:url(img/logout.png) no-repeat center; padding:40px;}
+
+#menuMain ul { margin:0; padding:0; list-style:none; }
+#menuMain ul li { float:left; list-style-type:none; padding:29px 30px; margin:0; font-size:18px; line-height:22px; background:url(../theme_images/menu_border.gif) repeat-y left; }
+#menuMain ul a { color:#FFFFFF; text-decoration:none; display:block; }
+#menuMain ul a span { display:block; }
+#menuMain ul #menuItem1Active a, #menuMain ul a:hover { background:#000000; color:#FFFFFF; }
+#menuMain ul .menuItem1First a { }
+#menuMain ul .menuItem1Last a { }
+
+
+/*********************** Side Menu ***********************/
+#menuSide { margin:0; }
+#menuSide ul { margin:0; padding:0; list-style-type:none; }
+#menuSide li { font-weight:bold; background:none; padding:0; margin:0; }
+#menuSide a { display:block; padding:5px; width:165px; color:#000000; text-decoration:none; background:#DDDDDD; }
+
+/* Level 2 */
+#menuSide ul { }
+#menuSide ul a { } /* generally not needed to style this as it is styled in #navcontainer a { } */
+#menuSide ul #menuItem1SubActive a, #menuSide ul a:hover { text-decoration:underline; }
+#menuSide ul .menuItem1SubFirst a { }
+#menuSide ul .menuItem1SubLast a { }
+
+/* Level 3 */
+#menuSide ul #menuItem1SubActive ul { }
+#menuSide ul #menuItem1SubActive ul a { width:155px; padding:5px 5px 5px 15px; background:#BABABA; color:#000000; text-decoration:none; }
+#menuSide ul #menuItem1SubActive ul #menuItem2SubActive a, #menuSide ul #menuItem1SubActive ul a:hover { text-decoration:underline; }
+#menuSide ul #menuItem1SubActive ul .menuItem2SubFirst a { }
+#menuSide ul #menuItem1SubActive ul .menuItem2SubLast a { }
+
+/* Level 4 */
+#menuSide ul #menuItem1SubActive ul #menuItem2SubActive ul { }
+#menuSide ul #menuItem1SubActive ul #menuItem2SubActive ul a { width:145px; padding:5px 5px 5px 25px; background:#989898; color:#000000; text-decoration:none; }
+#menuSide ul #menuItem1SubActive ul #menuItem2SubActive ul #menuItem3SubActive a, #menuSide ul #menuItem1SubActive ul #menuItem2SubActive ul a:hover { text-decoration:underline; }
+#menuSide ul #menuItem1SubActive ul #menuItem2SubActive ul .menuItem3SubFirst a { }
+#menuSide ul #menuItem1SubActive ul #menuItem2SubActive ul .menuItem3SubLast a { }
+
+/*********************** Footer Menu ***********************/
+.menuOuter1Ftr { display:inline; }
+#footer ul { margin:0; padding:0; list-style-type:none; display:inline; }
+#footer ul li { display:inline; margin-left:5px; border-left:1px solid #000000; line-height:1em; }
+#footer ul li a { margin-left:5px; }
+#footer ul .menuItem1FtrFirst {  }
+#footer ul .menuItem1FtrLast {  }

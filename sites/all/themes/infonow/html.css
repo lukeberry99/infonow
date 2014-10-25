@@ -1,0 +1,40 @@
+/*@charset "utf-8";*/
+/***********************************************/
+/* HTML tag styles                             */
+/***********************************************/
+body {
+padding:0; border:0;
+font-family:Arial, Verdana, Helvetica, sans-serif;
+text-align:left; color:#000000;
+line-height:18px;
+font-size:14px;
+background:#E2E2E2;
+margin:0;
+}
+
+img, object, embed { padding:0; border:0; vertical-align:top; }
+
+hr { border:none; border-top:1px solid #CCCCCC; }
+div.hr { border-top:1px solid #CCCCCC; margin:0; }
+div.hr hr { display:none; }
+
+/******* hyperlink and anchor tag styles *******/
+a { text-decoration:none }
+a:visited { }
+a:hover { text-decoration:none }
+a:active { }
+
+/************** header tag styles **************/
+h1, h2, h3, h4, h5, h6 { padding:0; margin:0 0 0.5em 0; line-height:1.2em; }
+
+h1 { font-size:20px; line-height:24px; font-weight:normal }
+h2 { color:#6B7C92; font-size:16px; line-height:20px; }
+h3 { font-size:1.2em; }
+h4 { font-size:1.1em; }
+h5 { font-size:1em; }
+h6 { font-size:0.9em; }
+
+acronym { cursor:help; border:0px; border-bottom:1px dashed black; }
+
+table { font-size:1em; }
+p { margin:0; padding:0 0 1em 0; }

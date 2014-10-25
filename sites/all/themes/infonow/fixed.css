@@ -1,0 +1,80 @@
+/* Fixed css - Only use for styles directly related to structure for fixed (800) design */
+#site_content { width:1024px; margin:0 auto;}
+#header { width:100%; background:#333333; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#000000'); background: -webkit-gradient(linear, left top, left bottom, from(#333333), to(#000000)); background: -moz-linear-gradient(top,  #333333,  #000000);  }
+#main_body { width:100%; }
+
+#body_left { float:left; width:175px; }
+#body_centre { width:100%;}
+#body_right { float:right; width:905px; }
+
+
+#footer { width:1100px; margin:0 auto; color:#666666; background:#E7E7E7; padding:5px; margin-top:10px; }
+
+/** General layout classes **/
+.clear { display:block; clear:both; font-size:0; line-height:0; height:0; }
+.center { text-align:center; }
+.left, .text_left { text-align:left; }
+.right, .text_right { text-align:right; }
+.justify { text-align:justify; }
+.float_left { float:left; }
+.float_right { float:right; }
+.margin { margin:10px 0; }
+.margin_top { margin-top:10px; }
+.margin_bottom { margin-bottom:10px; }
+.bold { font-weight:bold; }
+.italic { font-style:italic; }
+.overflow { overflow:hidden; }
+.icon_general { float:left; margin-right:10px; }
+.red_text { color:#CC0000; }
+.main_title { margin-bottom:10px; }
+.message { color:#CC0000; }
+
+img.left { float:left; padding-right:10px; }
+img.right { float:right; padding-left:10px; }
+
+/* nextN */
+.nextn_container { overflow:hidden; margin:10px 0; float:right; }
+.nextn_container a { }
+.nextn_container a:hover { }
+.nextn_container .intro { display:none; float:left; margin:0 5px 0 0; font-weight:bold; }
+.nextn_container .general { float:left; margin:0 5px; font-weight:normal; }
+.nextn_container .selected { float:left; margin:0 5px; font-weight:bold; text-decoration:none; }
+.nextn_container .previous_active { float:left; margin:0 5px; font-weight:normal; }
+.nextn_container .previous_page_inactive { display:none; float:left; margin:0 5px; }
+.nextn_container .previous_inactive { float:left; margin:0 5px; color:#CCCCCC; }
+.nextn_container .next_active { float:left; margin:0 5px; }
+.nextn_container .next_inactive { float:left; margin:0 5px; color:#CCCCCC; }
+.nextn_container .next_page_inactive { display:none; float:left; margin:0 5px; }
+
+/* Breadcrumbs */
+#breadcrumbs { padding:0; border-top:1px solid #C0C6CC; background:#99A7B5; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#99A7B5', endColorstr='#7C8B9E'); background: -webkit-gradient(linear, left top, left bottom, from(#99A7B5), to(#7C8B9E)); background: -moz-linear-gradient(top,  #99A7B5,  #7C8B9E); color:#FFFFFF; font-size:14px }
+#breadcrumbs ul { margin:0; padding:0; list-style:none; }
+#breadcrumbs ul li { list-style:none; padding:0 14px; float:left; background:url(../css_themes/default/theme_images/breadcrumbs_arrow.png) no-repeat right center; height:25px; margin-left:-13px; z-index:10; position:relative }
+#breadcrumbs ul li#breadcrumb_home_link { margin:0; }
+#breadcrumbs ul li.last { background:url(../css_themes/default/theme_images/breadcrumbs_arrow-seelcted.png) no-repeat right center; background-color:#6B7C92; z-index:5; }
+#breadcrumbs a:link, #breadcrumbs a:visited, #breadcrumbs a:active { text-decoration:none; color:#FFFFFF; padding:4px 5px; display:block; }
+#breadcrumbs a:hover { text-decoration:none; }
+#breadcrumbs ul li#breadcrumb_home_link a { padding-left:0; }
+
+
+/* List of content (eg. news articles index) */
+.list_content { margin:0; padding:0; list-style:none; }
+.list_content li { margin:0 0 10px 0; padding:10px 0; border-bottom:1px solid #666666; list-style:none; }
+.list_content li .title { margin:0 0 10px 0; padding:0; color:#666666; }
+.list_content li .title a { color:#666666; text-decoration:none; }
+.list_content li .title a:hover { text-decoration:underline; }
+
+/** General styling for a table **/
+table.table_content { border-top:1px solid #EEEEEE; border-right:1px solid #EEEEEE; }
+table.table_content th { padding:2px 4px; border-left:1px solid #EEEEEE; border-bottom:1px solid #EEEEEE; background:#EEEEEE; }
+table.table_content td { padding:2px 4px; border-left:1px solid #EEEEEE; border-bottom:1px solid #EEEEEE; }
+
+
+
+/*** Default CAPTCHA style - based on a CAPTCHA field named 'captcha' (change this accordingly for different field names) ***/
+.captcha { }
+.captcha .form_question_label { float:none; width:auto; font-weight:normal; margin:0 0 5px 21%; }
+.captcha .form_question_input { width:79%; padding-left:0; padding-right:0; position:relative; border:none; }
+.captcha #captcha { float:left; width:110px; margin:28px 5px 0 0; border:1px solid #CCCCCC; padding-top:3px; padding-bottom:3px; }
+.captcha img { float:left; }
+.captcha #captcha_captchaRefresh { background:url(/creo_admin/images/captcha-refresh.gif) left top no-repeat; width:21px; height:21px; position:absolute; top:2px; left:89px; cursor:pointer; }

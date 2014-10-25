@@ -1,0 +1,11 @@
+name = Infonow
+description = Infonow theme
+core = 7.x
+stylesheets[all][] = fixed.css
+stylesheets[all][] = custom.css
+stylesheets[all][] = form.css
+stylesheets[all][] = html.css
+stylesheets[all][] = menu.css
+stylesheets[print][] = print.css
+regions[content] = Content
+regions[cmis] = CMIS

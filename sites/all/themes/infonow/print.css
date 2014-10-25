@@ -1,0 +1,65 @@
+.no_display { display:none; }
+
+.center { text-align:center; }
+.left { text-align:left; }
+.right { text-align:right; }
+
+#main_menu { display:none; }
+#navcontainer { display:none; }
+
+body {
+background-color:#ffffff;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+text-align:left;
+line-height:1.2em;
+font-size:0.7em;
+}
+
+img { padding:0px; border:0; }              
+
+h1 {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 1.2em;
+text-align: left;
+line-height: 1.4em;
+border-bottom:1px dotted #fff;
+}
+h2 {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 1.0em;
+text-align: left;
+line-height: 1.2em;
+font-weight:bold}
+h3 {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 1.0em;
+text-align: left;
+line-height: 1.3em;
+font-weight:bold}
+h4 {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 1.0em;
+text-align: left;
+line-height: 1.2em;
+font-weight:bold}
+
+br { clear:left; }
+
+#skipLinks { display: none; }
+
+
+#site_content {
+width: 770px;
+padding:0px;
+margin:0px;
+border:0px;
+}
+
+#header { width:770px; padding:0px; margin:0px; border:0px; }
+#main_body { float:left; width:770px; }
+#body_left { width:181px; overflow:visible; }
+#body_centre { width:231px; }
+#body_right { width:304px; }
+#body_centre_and_right { width:535px; }
+#footer { width:770px; }
+#footer ul { display:none; }
