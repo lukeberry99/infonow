@@ -3,19 +3,33 @@
 
 print render($page['menu']); 
 ?>
+<?php if ($main_menu): ?>
+<div id="main-menu" class="navigation">
+<?php print theme('links__system_main_menu', array(
+    'links' => $main_menu,
+    'attributes' => array(
+        'id' => 'main-menu-links',
+        'class' => array('links', 'clearfix'),
+    ),
+    'heading' => array(
+        'text' => t('Main menu'),
+        'level' => 'h2',
+        'class' => array('element-invisible'),
+    ),
+    ));
+?>
 
 <div id="main_body">
     <div id="body_centre">
         <div id="area_content">
             <div id="map">
-                <img src="/<?php echo drupal_get_path('theme', 'infonow');?>/img/home_screen.jpg" alt="" />
-                <?php if ($main_menu): ?>
-                    <div id="main-menu" class="navigation">
-                    <?php 
-                        get_main_menu($main_menu);
-                    ?>
+                <img src="<?php echo drupal_get_path('theme', 'infonow');?>/img/home_screen.jpg" alt="" />
+                <a href=""><div class="area" style="width:150px; height:100px; position:absolute; top:5.5%; left:5.5%"></div></a>
+                <div class="label_holder" style="position:absolute; top:14.2%; left:9.0%; width:100px">
+                    <div class="label" style=" padding:0 0 0 16px; background-position:left center;">
+                        <a href="">Human Resource</a>
                     </div>
-                <?php endif; ?>
+                </div>
             </div>
             <div id="documents_holder">
                 <div class="search_holder">
@@ -34,7 +48,7 @@ print render($page['menu']);
                     <ul class="doc_list">
                         <li>
                             <div class="icon">
-                                <a href="highland_risk_assessment_13_-_industrial_wiring.doc" target="_blank"><img src="/<?php echo drupal_get_path('theme', 'infonow'); ?>/img/icon-word.gif" alt="DOC (Microsoft Word Document) File" title="DOC (Microsoft Word Document) File" /></a>
+                                <a href="highland_risk_assessment_13_-_industrial_wiring.doc" target="_blank"><img src="<?php echo drupal_get_path('theme', 'infonow'); ?>/img/icon-word.gif" alt="DOC (Microsoft Word Document) File" title="DOC (Microsoft Word Document) File" /></a>
                             </div>
                             <div class="text">
                                 <div class="title"><a href="highland_risk_assessment_13_-_industrial_wiring.doc" target="_blank">Test Document</a></div>

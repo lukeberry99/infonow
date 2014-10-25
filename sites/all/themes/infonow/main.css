@@ -1,0 +1,29 @@
+#main-menu {
+    position: absolute;
+    top: 0;
+}
+ul#main-menu-links {
+    display: inline;
+}
+ul#main-menu-links li {
+    display: inline;
+    list-style: none;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+}
+/**
+ * Hide home link
+ * TODO: Find a more graceful way of doing this
+ */
+ul#main-menu-links li.menu-218 {
+    display: none;
+}
+ul#main-menu-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+ul#main-menu-links li a:hover {
+    text-decoration: underline;
+}
+

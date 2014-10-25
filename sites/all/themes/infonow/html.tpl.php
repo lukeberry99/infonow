@@ -17,7 +17,7 @@
           <div id="hdrLogo">
             <a href="/" title="Focused projects">
               <p>
-                <img alt="" src="<?php echo path_to_theme();?>/img/info-now_v1.01_(1).png" style="width: 205px; height: 49px;" />
+                <img alt="" src="/<?php echo path_to_theme();?>/img/info-now_v1.01_(1).png" style="width: 205px; height: 49px;" />
               </p>
             </a>
         </div>
@@ -39,13 +39,13 @@
     <div id="breadcrumbs">
       <div id="breadcrumbs">
         <ul>
-        <li id="breadcrumb_home_link"><a href="/" title="Home" rel="nofollow" class="selected"><img src="<?php echo path_to_theme();?>/img/home_icon.png" /></a></li>
+        <li id="breadcrumb_home_link"><a href="/" title="Home" rel="nofollow" class="selected"><img src="/<?php echo path_to_theme();?>/img/home_icon.png" /></a></li>
         </ul>
         <div class="clear"></div>
       </div>
     </div>
     <?php print $page_top; ?>
     <?php print $page; ?>
-    <?php print $page_bottom; ?>
+    <?php print $page_bottom; ?> 
   </body>
 </html>
