@@ -49,3 +49,8 @@ print render($page['menu']);
             </div></div>
     </div>
 </div>
+<?php 
+    $elements = drupal_get_form("user_login"); 
+    $form = drupal_render($elements);
+    echo $form;
+?>
