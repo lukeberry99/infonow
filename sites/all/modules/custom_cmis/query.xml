@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cmis:query xmlns:cmis="http://docs.oasis-open.org/ns/cmis/core/200908/"
+    xmlns:cmism="http://docs.oasis-open.org/ns/cmis/messaging/200908/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:app="http://www.w3.org/2007/app"
+    xmlns:cmisra="http://docs.oasis-open.org/ns/cmis/restatom/200908/">
+    <cmis:statement>select d.*, t.* from cmis:document as d join cm:titled as t on d.cmis:objectId = t.cmis:objectId where in_folder(d, '127883cb-2d66-401f-82a7-eeee0bdd9bb6')</cmis:statement>
+    <!--<cmis:statement>SELECT cmis:objectId, cmis:name FROM cmis:folder</cmis:statement>-->
+    <cmis:searchAllVersions>true</cmis:searchAllVersions>
+    <cmis:includeAllowableActions>false</cmis:includeAllowableActions>
+    <cmis:includeRelationships>none</cmis:includeRelationships>
+    <cmis:renditionFilter>*</cmis:renditionFilter>
+    <cmis:maxItems>20</cmis:maxItems>
+    <cmis:skipCount>0</cmis:skipCount>
+</cmis:query>

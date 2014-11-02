@@ -1,0 +1,4 @@
+name = Custom CMIS Module
+description = A Custom CMIS Module because everything else is bollocks
+core = 7.x
+version = 1.0
