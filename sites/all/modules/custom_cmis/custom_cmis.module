@@ -6,52 +6,128 @@
 function custom_cmis_block_info() {
     global $user;
     $account = user;
-    $blocks['custom_cmis'] = array('info' => t('Custom Block'));
+    $blocks['custom_cmis'] = array('info' => t('CMIS Stuff'));
     return $blocks;
 }
 
 function custom_cmis_block_view($delta = ''){
     global $user;
     $account = $user;
-    //$uri = str_replace('/alfresco/', '', parse_url($_SERVER['REQUEST_URI'])['path']);
-    //$uri = str_replace('-', ' ', $uri);
-    //$uri = ucwords($uri);
-    $list = listFolders();
-    $message = "<ul>";
-    $reference = "";
-    foreach($list as $obj) {
-        $message .= "<li><a href='".$obj->content."'>";
-        $message .= $obj->properties['cmis:name'];
-        $message .= "</a></li>";
+    $message = "";
+    $node = menu_get_object();
+    $folderId = $node->field_folder_object_id['und'][0]['safe_value'];
+    $data = GetListOfFilesInFolder($folderId);
+    $fileList = array();
+    if(!arg(2)) {
+        foreach($data as $row) {
+            if(!in_array(GetTagName($row), $fileList))
+                $message .= "<a href='/".current_path() ."/". GetTagName($row)."'>" . MakeTagPresentable(GetTagName($row)) . "</a><br />";
+            array_push($fileList, GetTagName($row));
+        }
+    } else {
+        foreach($data as $row) {
+            $message .= "<a href='#'>".GetFileName($row) ."</a><br />";
+        }
     }
-    $message .= "</ul>";
     $block['content'] = $message;
     return $block;
 }
 
-function listFolders() {
-    require_once "Alfresco_CMIS_API.php";
-    $repoUrl="http://alfresco.luke-berry.co.uk:8080/alfresco/cmisatom";
-    $username="admin";
-    $password="admin";
-    $path="/Sites/burtons-demo/documentLibrary/Burtons/taxonomy";
+function GetFilesByTag($folderId, $tag)
+{
+    try {
+        if(!$tag)
+            throw new Exception("A tag is required");
+        $ch = curl_init();
+        if(FALSE === $ch)
+            throw new Exception('Failed to initialise curl');
 
-    //Load folder
-    $folder= new CMISalfObject($repoUrl,$username,$password,null,null,$path);
-    if(!$folder->loaded) die("\nSORRY! cannot open folder!\nThe last HTTP request returned the following status: ".$folder->lastHttpStatus."\n\n" . $folderInc);
+        $baseUrl = "http://alfresco.luke-berry.co.uk:8080/alfresco/api/-default-/public/cmis/versions/1.1/browser?cmisselector=query&";
+        $data = array('q' => 'select cmis:name from cmis:document WHERE IN_FOLDER(\''.$folderId.'\') and CONTAINS(\'TAG:"'.$tag.'"\')');
+        $url = $baseUrl . http_build_query($data);
 
-    $folder->listContent();
-    $folder->goGet();
 
-    $list = array();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($ch, CURLOPT_USERPWD, "admin:admin") ;
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true );
 
-    foreach($folder->containedObjects as $obj){
-        $type =  (string)$obj->properties['cmis:objectTypeId'];
-        if($type == "cmis:folder")
-        {
-            //echo $obj->properties['cmis:name']." (".$obj->properties['cmis:baseTypeId'].")\n";
-            array_push($list, $obj);
+        $data = curl_exec($ch);
+
+        if(FALSE === $data) {
+            throw new Exception(curl_error($ch), curl_errno($ch));
+
+            curl_close($ch);
         }
     }
-    return $list;
+    catch(Exception $e)
+    {
+        trigger_error(sprintf(
+            'Curl failed with error #%d: %s',
+            $e->getCode(), $e->getMessage()),
+        E_USER_ERROR);
+    }
+    $data = json_decode($data, true);
+    return $data['results'];
+}
+
+
+
+function GetListOfFilesInFolder($folderID)
+{
+    try {
+        if(!$folderID)
+            throw new Exception("A Folder ObjectID is required");
+        $baseUrl = "http://alfresco.luke-berry.co.uk:8080/alfresco/api/-default-/public/cmis/versions/1.1/browser?cmisselector=query&q=";
+        $query = "select cmis:name from cmis:document ";
+        $where = "WHERE IN_FOLDER('$folderID')";
+
+        $url = $baseUrl . urlencode($query . $where);
+
+        $ch = curl_init();
+        if(FALSE === $ch)
+            throw new Exception('Failed to initialise curl');
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($ch, CURLOPT_USERPWD, "admin:admin") ;
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true );
+
+        $data = curl_exec($ch);
+
+        if(FALSE === $data) {
+            throw new Exception(curl_error($ch), curl_errno($ch));
+
+            curl_close($ch);
+        }
+    }
+    catch(Exception $e)
+    {
+        trigger_error(sprintf(
+            'Curl failed with error #%d: %s',
+            $e->getCode(), $e->getMessage()),
+        E_USER_ERROR);
+    }
+    $data = json_decode($data, true);
+    return $data['results'];
+}
+
+function GetTagName($File)
+{
+    $File = $File['properties']['cmis:name']['value'][0];
+    $FileInfo =  explode("%", $File);
+    return $FileInfo[1];
+}
+
+function GetFileName($File)
+{
+    $File = $File['properties']['cmis:name']['value'][0];
+    $FileInfo =  explode("%", $File);
+    return $FileInfo[0];
+}
+
+function MakeTagPresentable($tag) {
+    return ucwords(str_replace("-", " ", $tag));
 }
