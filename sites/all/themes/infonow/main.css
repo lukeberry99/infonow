@@ -2,38 +2,40 @@
     position: absolute;
     top: 0;
 }
-#block-menu-block-2 ul.menu {
+#map {
+    position: relative;
+}
+#file-list-menu {
+    position: relative;
+}
+#file-list-menu ul.menu {
+    position: absolute;
+    top: -400px;
+}
+#file-list-menu ul.menu, #block-menu-block-2 ul.menu {
     display: inline;
 }
-#block-menu-block-2 ul.menu li {
+#file-list-menu ul.menu li, #block-menu-block-2 ul.menu li {
     list-style: none !important;
     margin-bottom: 20px;
     display: inline;
 }
-/*#block-menu-block-2 ul.menu li a.active-trail {*/
-    /*display: none !important;*/
-/*}*/
-/*#block-menu-block-2 ul.menu li.collapsed a {*/
-    /*display: none !important;*/
-/*}*/
-#block-menu-block-2 ul.menu li a{
+#file-list-menu ul.menu li a, #block-menu-block-2 ul.menu li a{
     display: inline;
     list-style: none;
     background: rgba(0, 0, 0, 0.8);
     padding: 15px;
     border-radius: 15px;
-}
-/*#block-menu-block-2 ul.menu li.menu-mlid-360 a{*/
-    /*display: none;*/
-/*}*/
-/*#block-menu-block-2 ul.menu li.menu-mlid-360 ul li a {*/
-    /*display: block;*/
-/*}*/
-#block-menu-block-2 ul.menu li a {
     color: #fff;
     text-decoration: none;
 }
-ul#main-menu-links li a:hover {
+
+#file-list-menu ul.menu li a:hover, ul#main-menu-links li a:hover {
     text-decoration: underline;
 }
+
+
+/*.relative-wrapper {*/
+    /*position: relative;*/
+/*}*/
 

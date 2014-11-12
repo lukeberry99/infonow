@@ -3,19 +3,28 @@
     <div id="body_centre">
         <div id="area_content">
             <div id="map">
-                <?php if($page['main-nav']): ?>
-                    <?='<img src="'.image_style_url('bg', $node->field_background_image['und'][0]['filename']).'" />'?>
-                    <div id="featured">
-                        <div class="section clearfix">
-                            <?php print render($page['main-nav']); ?>
-                        </div>
-                    </div>  
-                <?php endif; ?>
+            <?php
+                if($page['main-nav']):
+                    if($node->field_background_image['und'][0]['filename']){ ?>
+                        <?='<img src="'.image_style_url('bg', $node->field_background_image['und'][0]['filename']).'" />'?>
+<?php } else { ?>
+
+                        <?='<img src="/sites/default/files/styles/bg/public/home_screen.jpg?itok=wvURaPnA" />'?>
+<?php
+}
+                endif;
+            ?>
+            
+                <div id="featured">
+                    <div class="section clearfix">
+                        <?php print render($page['main-nav']); ?>
+                    </div>
+                </div>  
             </div>
             <div id="documents_holder">
                 <div class="search_holder">
                     <div class="title_holder">
-                        <div class="title">Search</div>
+                        <div class="title">File List</div>
                         <div class="toggle down"></div>
                         <div class="clear"></div>
                     </div>

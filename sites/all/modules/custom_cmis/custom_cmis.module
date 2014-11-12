@@ -22,7 +22,9 @@ function custom_cmis_block_view($delta = '') {
     $folderId = $node->field_folder_object_id['und'][0]['safe_value'];
     switch($delta) {
     case 'taxonomy_view':
-        $message .= "<ul>";
+        $message .= "<div class='relative-wrapper'>";
+        $message .= "<div id='file-list-menu'>";
+        $message .= "<ul class='menu'>";
         foreach($tree as $branch)
         {
             $message .= "<li>";
@@ -30,6 +32,8 @@ function custom_cmis_block_view($delta = '') {
             $message .= "</li>";
         }
         $message .= "</ul>";
+        $message .= "</div>";
+        $message .= "</div>";
 
         $block['content'] = $message;
         break;
