@@ -2,8 +2,9 @@
 sites/*/settings*.php
 
 # Ignore paths that contain user-generated content.
-sites/*/files
-sites/*/private
+# Enable images for dev
+#sites/*/files
+#sites/*/private
 
 # DS Store
 .DS_Store
