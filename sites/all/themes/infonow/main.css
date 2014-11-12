@@ -1,25 +1,35 @@
-#main-menu {
+#block-menu-block-2 {
     position: absolute;
     top: 0;
 }
-ul#main-menu-links {
+#block-menu-block-2 ul.menu {
     display: inline;
 }
-ul#main-menu-links li {
+#block-menu-block-2 ul.menu li {
+    list-style: none !important;
+    margin-bottom: 20px;
+    display: inline;
+}
+/*#block-menu-block-2 ul.menu li a.active-trail {*/
+    /*display: none !important;*/
+/*}*/
+/*#block-menu-block-2 ul.menu li.collapsed a {*/
+    /*display: none !important;*/
+/*}*/
+#block-menu-block-2 ul.menu li a{
     display: inline;
     list-style: none;
     background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
+    padding: 15px;
     border-radius: 15px;
 }
-/**
- * Hide home link
- * TODO: Find a more graceful way of doing this
- */
-ul#main-menu-links li.menu-218 {
-    display: none;
-}
-ul#main-menu-links li a {
+/*#block-menu-block-2 ul.menu li.menu-mlid-360 a{*/
+    /*display: none;*/
+/*}*/
+/*#block-menu-block-2 ul.menu li.menu-mlid-360 ul li a {*/
+    /*display: block;*/
+/*}*/
+#block-menu-block-2 ul.menu li a {
     color: #fff;
     text-decoration: none;
 }

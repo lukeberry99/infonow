@@ -6,30 +6,59 @@
 function custom_cmis_block_info() {
     global $user;
     $account = user;
-    $blocks['custom_cmis'] = array('info' => t('CMIS Stuff'));
+    $blocks['taxonomy_view'] = array('info' => t('Taxonomy View'));
+    $blocks['document_view'] = array('info' => t('Document View'));
     return $blocks;
 }
 
-function custom_cmis_block_view($delta = ''){
+function custom_cmis_block_view($delta = '') {
     global $user;
     $account = $user;
     $message = "";
     $node = menu_get_object();
+    $vid = taxonomy_vocabulary_machine_name_load('tags')->vid;
+    $tree = taxonomy_get_tree($vid, '0');
+    $twig = array();
     $folderId = $node->field_folder_object_id['und'][0]['safe_value'];
-    $data = GetListOfFilesInFolder($folderId);
-    $fileList = array();
-    if(!arg(2)) {
-        foreach($data as $row) {
-            if(!in_array(GetTagName($row), $fileList))
-                $message .= "<a href='/".current_path() ."/". GetTagName($row)."'>" . MakeTagPresentable(GetTagName($row)) . "</a><br />";
-            array_push($fileList, GetTagName($row));
+    switch($delta) {
+    case 'taxonomy_view':
+        $message .= "<ul>";
+        foreach($tree as $branch)
+        {
+            $message .= "<li>";
+            $message .= "<a href='/".current_path() ."/?tag=".$branch->description."'>".$branch->name."</a>";
+            $message .= "</li>";
         }
-    } else {
-        foreach($data as $row) {
-            $message .= "<a href='#'>".GetFileName($row) ."</a><br />";
+        $message .= "</ul>";
+
+        $block['content'] = $message;
+        break;
+    case 'document_view':
+        
+        $folderId = $node->field_folder_object_id['und'][0]['safe_value'];
+        $q = $_SERVER['QUERY_STRING'];
+        if($q) {
+            $q = explode('=', $q);
+            $tag = $q[1];
+            $files = GetFilesByTag($folderId, $tag);
+            $message .= "<ul>";
+            foreach($files as $file) {
+                $baseUrl = "http://alfresco.luke-berry.co.uk:8080/alfresco/api/-default-/public/cmis/versions/1.1/browser/root?";
+                $param = array('objectId' => GetFileId($file));
+                $url = $baseUrl . http_build_query($param);
+                $message .= "<li>";
+                $message .= "<a href='$url' target='_BLANK'>".GetFileName($file)."</a>";
+                $message .= "</li>";
+            }
+            $message .= "</ul>";
+
+
+            $block['content'] = $message;
+            break;
+
         }
+
     }
-    $block['content'] = $message;
     return $block;
 }
 
@@ -43,7 +72,7 @@ function GetFilesByTag($folderId, $tag)
             throw new Exception('Failed to initialise curl');
 
         $baseUrl = "http://alfresco.luke-berry.co.uk:8080/alfresco/api/-default-/public/cmis/versions/1.1/browser?cmisselector=query&";
-        $data = array('q' => 'select cmis:name from cmis:document WHERE IN_FOLDER(\''.$folderId.'\') and CONTAINS(\'TAG:"'.$tag.'"\')');
+        $data = array('q' => 'select cmis:name, cmis:objectId from cmis:document WHERE IN_FOLDER(\''.$folderId.'\') and CONTAINS(\'TAG:"'.$tag.'"\')');
         $url = $baseUrl . http_build_query($data);
 
 
@@ -72,58 +101,15 @@ function GetFilesByTag($folderId, $tag)
     return $data['results'];
 }
 
-
-
-function GetListOfFilesInFolder($folderID)
-{
-    try {
-        if(!$folderID)
-            throw new Exception("A Folder ObjectID is required");
-        $baseUrl = "http://alfresco.luke-berry.co.uk:8080/alfresco/api/-default-/public/cmis/versions/1.1/browser?cmisselector=query&q=";
-        $query = "select cmis:name from cmis:document ";
-        $where = "WHERE IN_FOLDER('$folderID')";
-
-        $url = $baseUrl . urlencode($query . $where);
-
-        $ch = curl_init();
-        if(FALSE === $ch)
-            throw new Exception('Failed to initialise curl');
-
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, "admin:admin") ;
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true );
-
-        $data = curl_exec($ch);
-
-        if(FALSE === $data) {
-            throw new Exception(curl_error($ch), curl_errno($ch));
-
-            curl_close($ch);
-        }
-    }
-    catch(Exception $e)
-    {
-        trigger_error(sprintf(
-            'Curl failed with error #%d: %s',
-            $e->getCode(), $e->getMessage()),
-        E_USER_ERROR);
-    }
-    $data = json_decode($data, true);
-    return $data['results'];
-}
-
-function GetTagName($File)
-{
-    $File = $File['properties']['cmis:name']['value'][0];
-    $FileInfo =  explode("%", $File);
-    return $FileInfo[1];
-}
-
 function GetFileName($File)
 {
-    $File = $File['properties']['cmis:name']['value'][0];
+    $File = $File['properties']['cmis:name']['value'];
+    $FileInfo =  explode("%", $File);
+    return $FileInfo[0];
+}
+function GetFileId($File)
+{
+    $File = $File['properties']['cmis:objectId']['value'];
     $FileInfo =  explode("%", $File);
     return $FileInfo[0];
 }
@@ -131,3 +117,17 @@ function GetFileName($File)
 function MakeTagPresentable($tag) {
     return ucwords(str_replace("-", " ", $tag));
 }
+//if(!arg(2)) {
+        //$data = GetListOfFilesInFolder($folderId);
+        //foreach($data as $row) {
+            //if(!in_array(GetTagName($row), $fileList))
+                //$message .= "<a href='/".current_path() ."/". GetTagName($row)."'>" . MakeTagPresentable(GetTagName($row)) . "</a><br />";
+            //array_push($fileList, GetTagName($row));
+        //}
+    //} else {
+        //$data = GetFilesByTag($folderId, arg(2));
+
+        //foreach($data as $row) {
+            //$message .= "<a href='#'>".GetFileName($row) ."</a><br />";
+        //}
+    //}
