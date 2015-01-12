@@ -18,7 +18,7 @@
 #file-list-menu ul.menu li, #block-menu-block-2 ul.menu li {
     list-style: none !important;
     margin-bottom: 80px;
-    display: inline;
+    display: inline-block;
 }
 #file-list-menu ul.menu li a, #block-menu-block-2 ul.menu li a{
     display: inline;
