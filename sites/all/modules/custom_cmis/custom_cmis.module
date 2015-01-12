@@ -38,7 +38,6 @@ function custom_cmis_block_view($delta = '') {
         $block['content'] = $message;
         break;
     case 'document_view':
-        
         $folderId = $node->field_folder_object_id['und'][0]['safe_value'];
         $q = $_SERVER['QUERY_STRING'];
         if($q) {
